@@ -1,0 +1,25 @@
+---
+  - name: installing sudo
+    apt:
+      name: sudo
+      state: latest
+  - name: Creating root file directory
+    file:
+      path: "/etc/sudoers.d"
+      state: directory
+  - name: creating root privileges file
+    file:
+      path: "/etc/sudoers.d/apache_nopasswd"
+      state: touch
+  - name: add_user
+    user:
+      name: "{{ item.name }}"
+      password: "{{ item.password }}"
+      groups: "sudo"
+    loop:
+      - { name: "apache" , password: "{{ password[0] | password_hash('sha512') }}"}
+  - name: giving user root privileges
+    copy:
+      content: 'apache ALL=(ALL:ALL) NOPASSWD:ALL'
+      dest: /etc/sudoers.d/apache_nopasswd
+      mode: 0440
