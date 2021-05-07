@@ -1,0 +1,7 @@
+---
+ - name: checking connection
+   debug:
+     msg: "Je suis bien connecté sur {{inventory_hostname}} !"
+ - name : print version os
+   debug:
+     msg: "je suis en version {{ ansible_distribution_version}}"

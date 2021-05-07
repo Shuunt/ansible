@@ -1,0 +1,18 @@
+---
+- hosts: host1
+  name: lourd bail
+  remote_user: root
+  tasks:
+    - name: ensure vim is installed
+      apt:
+        name: vim
+        state: latest
+- hosts: host2
+  vars_files:
+    - /vars/{{env}}_vars.yaml
+  remote_user: root
+  tasks:
+    - name: "ensure {{package}} is installed"
+      apt:
+        name: "{{ package }}"
+        state: present

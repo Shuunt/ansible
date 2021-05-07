@@ -1,0 +1,11 @@
+---
+
+  - name: add_user
+    user:
+      name: "{{ item.name }}"
+      password: "{{ item.password }}"
+    loop:
+      - { name: "lol" , password: "{{ password[0] | password_hash('sha512') }}"}
+      - { name: "supdevinci", password: "{{ password[1] | password_hash('sha512') }}" }
+
+# add user

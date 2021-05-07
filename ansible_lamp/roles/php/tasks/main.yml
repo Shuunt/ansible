@@ -1,0 +1,21 @@
+---
+- name: Install php
+  apt:
+    name: "php"
+    state: latest
+  when: ansible_distribution_version == "18.04"
+
+- name: Change html template
+  template:
+    src: ../templates/index.php.j2
+    dest: /var/www/index.php
+  notify:
+  - Restart apache
+
+- name: Copying phpinfo file
+  copy:
+    src: ../files/phpinfo.php
+    dest: /var/www/phpinfo.php
+  notify:
+  - Restart apache
+

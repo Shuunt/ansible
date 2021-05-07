@@ -1,0 +1,28 @@
+---
+- name: Install MySQL
+  apt:
+    name: "{{ item.name }}"
+    state: present
+  loop:
+    - { name: mysql-server }
+    - { name: mysql-client }
+    - { name: python-mysqldb }
+  when: ansible_distribution_version == "18.04"
+
+- name: Add user root
+  user:
+    name: "{{ item.name }}"
+    password: "{{ item.password }}"
+  loop:
+    - { name: "root" , password: "{{ password | password_hash('sha512') }}" }
+
+#- name: create DB
+#  community.mysql.mysql_db:
+    
+#- name: Add users read
+#  user:
+#    name: "{{ item.name }}"
+#    password: "{{ item.password }}"
+#  loop:
+#    - { name: "user1", password: "user1" }
+#    - { name: "user2", password: "user2" }

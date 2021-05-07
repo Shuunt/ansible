@@ -1,0 +1,7 @@
+---
+- name: ensure vim is installed
+    debug:
+d      msg: "lol"
+    apt:
+      name: vim
+      state: latest

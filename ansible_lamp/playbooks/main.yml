@@ -1,0 +1,22 @@
+---
+
+- hosts: web_and_db
+  remote_user: root
+  roles:
+    -  { role: check_connexion }
+  
+
+- hosts: web
+  remote_user: root
+  vars_files:
+    - vars/vars_template.yml
+  roles:
+    -  { role: apache }
+    -  { role: php }
+
+- hosts: db
+  remote_user: root
+  vars_files: 
+    - vars/secret.yml
+  roles:
+    - { role: mysql }
