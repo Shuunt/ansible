@@ -8,4 +8,4 @@ Make sure to have ansible installed on your machine.
 
 most of the ansible project simply runs by using this command line
 
-**ansible-playbook -i dev.host playbooks/main.yml**
+```ansible-playbook -i dev.host playbooks/main.yml```
