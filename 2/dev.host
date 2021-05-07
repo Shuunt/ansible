@@ -1,5 +1,0 @@
-[webserver]
-172.17.0.2
-
-[webserver:vars]
-env="dev"

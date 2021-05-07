@@ -1,8 +1,0 @@
----
-- name: Restart apache
-  service:
-    name: apache2
-    state: started
-    enabled: true
-  when: ansible_os_family == "Debian"
-

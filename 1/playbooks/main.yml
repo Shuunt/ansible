@@ -1,9 +1,0 @@
----
-- hosts: host1
-  name: lourd bail
-  remote_user: root
-  tasks:
-    - name: ensure vim is installed
-      apt:
-        name: vim
-        state: latest
